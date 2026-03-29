@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-tradesman.jpg";
-import forgeLogo from "@/assets/forge-logo.png";
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Star, Zap } from "lucide-react";
 
@@ -35,15 +35,6 @@ const HeroSection = () => {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/8 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Content */}
-      {/* Logo - top left */}
-      <motion.img
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        src={forgeLogo}
-        alt="Forge logo"
-        className="absolute top-6 left-6 h-14 w-auto z-20"
-      />
 
       <div className="relative z-10 container mx-auto px-6 py-20">
         <div className="max-w-2xl">
