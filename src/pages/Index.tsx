@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import WhoSection from "@/components/WhoSection";
+import ProductsSection from "@/components/ProductsSection";
 import CTASection from "@/components/CTASection";
 
 const Index = () => {
@@ -7,6 +8,7 @@ const Index = () => {
     <main className="bg-background min-h-screen">
       <HeroSection />
       <WhoSection />
+      <ProductsSection />
       <CTASection />
       <footer className="py-8 border-t border-border">
         <div className="container mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
