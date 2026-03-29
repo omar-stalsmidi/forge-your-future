@@ -62,9 +62,9 @@ const WhoSection = () => {
                 <span className="text-foreground font-medium"> their</span> empire — not yours. You know you're worth more.
               </p>
               <ul className="space-y-3 text-secondary-foreground text-sm">
+                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> Building confidence to take the leap</li>
                 <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> How to land your first clients</li>
                 <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> Pricing, quoting & getting paid</li>
-                <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> Building confidence to take the leap</li>
               </ul>
             </div>
           </motion.div>
