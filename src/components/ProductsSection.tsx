@@ -77,8 +77,7 @@ const blueprints = [
 
 const ProductsSection = () => {
   return (
-    <section className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 bg-background" />
+    <section className="py-28 bg-card relative overflow-hidden">
       <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-primary/4 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 container mx-auto px-6">
