@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-tradesman.jpg";
-import forgeLogo from "@/assets/forge-logo.png";
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Star, Zap } from "lucide-react";
 
