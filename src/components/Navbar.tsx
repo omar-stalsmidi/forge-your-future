@@ -1,3 +1,4 @@
+import * as React from "react";
 import { motion } from "framer-motion";
 import forgeLogo from "@/assets/forge-logo.png";
 import { Button } from "@/components/ui/button";
@@ -7,9 +8,9 @@ import { useState } from "react";
 const SKOOL_URL = "https://www.skool.com/forge-the-trades-blueprint-8794/about";
 
 const navLinks = [
-  { label: "Classes", href: "#classes" },
-  { label: "Blueprints", href: "#blueprints" },
-  { label: "Merch", href: "#merch" },
+  { label: "The Classes", href: "#classes" },
+  { label: "The Blueprints", href: "#blueprints" },
+  { label: "The Merch", href: "#merch" },
 ];
 
 const Navbar = () => {
@@ -20,7 +21,7 @@ const Navbar = () => {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-lg border-b border-border/50"
+      className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-lg border-b border-border/50"
     >
       <div className="container mx-auto px-6 flex items-center justify-between h-16">
         {/* Logo */}
@@ -29,15 +30,17 @@ const Navbar = () => {
         </a>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-muted-foreground hover:text-foreground text-sm font-semibold uppercase tracking-wider transition-colors"
-            >
-              {link.label}
-            </a>
+        <div className="hidden md:flex items-center gap-0">
+          {navLinks.map((link, i) => (
+            <React.Fragment key={link.label}>
+              {i > 0 && <div className="w-px h-5 bg-border" />}
+              <a
+                href={link.href}
+                className="text-muted-foreground hover:text-foreground text-sm font-semibold uppercase tracking-wider transition-colors px-6"
+              >
+                {link.label}
+              </a>
+            </React.Fragment>
           ))}
           <a href={SKOOL_URL} target="_blank" rel="noopener noreferrer">
             <Button variant="hero" size="sm">
