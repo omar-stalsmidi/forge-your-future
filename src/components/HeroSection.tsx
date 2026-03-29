@@ -69,7 +69,7 @@ const HeroSection = () => {
           >
             <span className="text-foreground block">STOP BUILDING</span>
             <span className="text-foreground block">SOMEONE ELSE'S</span>
-            <span className="text-gradient block mt-1">EMPIRE.</span>
+            <span className="text-gradient block mt-1">FUTURE.</span>
           </motion.h1>
 
           {/* Sub-copy */}
