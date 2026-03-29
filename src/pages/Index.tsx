@@ -1,16 +1,30 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import HeroSection from "@/components/HeroSection";
+import WhoSection from "@/components/WhoSection";
+import CTASection from "@/components/CTASection";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <main className="bg-background min-h-screen">
+      <HeroSection />
+      <WhoSection />
+      <CTASection />
+      <footer className="py-8 border-t border-border">
+        <div className="container mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-muted-foreground text-sm">
+            © {new Date().getFullYear()} Forge — The Trades Business Blueprint
+          </p>
+          <a
+            href="https://www.skool.com/forge-the-trades-blueprint-8794/about"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary hover:underline"
+          >
+            Join the Community
+          </a>
+        </div>
+      </footer>
+    </main>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
