@@ -15,14 +15,19 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
-      <div className="absolute inset-0">
+      <motion.div
+        className="absolute inset-0"
+        initial={{ scale: 1.15 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+      >
         <img
           src={heroImage}
           alt="Construction site at sunset with cranes"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-background/60" />
-      </div>
+        <div className="absolute inset-0 bg-background/50" />
+      </motion.div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col items-center text-center">
@@ -30,7 +35,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="bg-background/85 backdrop-blur-md rounded-2xl border border-border/50 px-8 py-12 md:px-16 md:py-16 max-w-3xl"
+          className="bg-background/70 backdrop-blur-xl rounded-2xl border border-border/30 px-8 py-12 md:px-16 md:py-16 max-w-3xl shadow-2xl"
         >
           {/* Eyebrow */}
           <motion.div
