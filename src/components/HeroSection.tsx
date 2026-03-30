@@ -1,17 +1,14 @@
 import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-construction.jpg";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, Star, Zap } from "lucide-react";
+import { ArrowRight, Users } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const SKOOL_URL = "https://www.skool.com/forge-the-trades-blueprint-8794/about";
 
-const stats = [
-  { icon: Users, value: "500+", label: "Members" },
-  { icon: Star, value: "Free", label: "To Join" },
-  { icon: Zap, value: "24/7", label: "Community" },
-];
-
 const HeroSection = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
@@ -46,7 +43,7 @@ const HeroSection = () => {
           >
             <div className="h-px w-10 bg-primary" />
             <span className="text-primary uppercase text-sm font-bold tracking-[0.2em]">
-              Free Community
+              For Every Tradesman
             </span>
             <div className="h-px w-10 bg-primary" />
           </motion.div>
@@ -58,9 +55,9 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-5xl md:text-7xl lg:text-8xl font-display leading-[0.9] mb-6"
           >
-            <span className="text-foreground block">STOP BUILDING</span>
-            <span className="text-foreground block">SOMEONE ELSE'S</span>
-            <span className="text-gradient block mt-1">FUTURE.</span>
+            <span className="text-foreground block">YOUR SKILLS BUILT</span>
+            <span className="text-foreground block">THIS WORLD.</span>
+            <span className="text-gradient block mt-1">NOW BUILD YOURS.</span>
           </motion.h1>
 
           {/* Sub-copy */}
@@ -70,48 +67,51 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto mb-10 leading-relaxed"
           >
-            The blueprint for tradesmen who are done waiting.
-            <span className="text-foreground font-semibold"> Learn to launch, grow, and scale </span>
-            a trades business that actually works for you.
+            Whether you're an employee ready to go solo, or a business owner
+            looking to scale —{" "}
+            <span className="text-foreground font-semibold">
+              we've got the blueprint, the tools, and the community
+            </span>{" "}
+            to get you there.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* Primary CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.65 }}
-            className="flex flex-col sm:flex-row justify-center gap-4 mb-14"
+            className="flex flex-col items-center gap-6 mb-12"
           >
-            <a href={SKOOL_URL} target="_blank" rel="noopener noreferrer">
-              <Button variant="hero" size="xl">
-                Join Forge — It's Free <ArrowRight className="ml-2 !size-5" />
-              </Button>
-            </a>
-            <a href="#who">
-              <Button variant="heroOutline" size="xl">
-                See If It's For You
-              </Button>
-            </a>
+            <Button
+              variant="hero"
+              size="xl"
+              onClick={() => navigate("/quiz")}
+            >
+              Let Us Help You <ArrowRight className="ml-2 !size-5" />
+            </Button>
           </motion.div>
 
-          {/* Social proof stats */}
+          {/* Secondary - Skool community */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex justify-center gap-8 items-center"
+            className="border-t border-border/30 pt-8"
           >
-            {stats.map((stat, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
-                  <stat.icon className="w-4 h-4 text-primary" />
-                </div>
-                <div className="text-left">
-                  <p className="text-foreground font-bold text-lg leading-none">{stat.value}</p>
-                  <p className="text-muted-foreground text-xs mt-0.5">{stat.label}</p>
-                </div>
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <div className="w-9 h-9 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+                <Users className="w-4 h-4 text-primary" />
               </div>
-            ))}
+              <p className="text-muted-foreground text-sm">
+                We're now on Skool! Learn from other business owners in our{" "}
+                <span className="text-foreground font-semibold">free community</span>.
+              </p>
+            </div>
+            <a href={SKOOL_URL} target="_blank" rel="noopener noreferrer">
+              <Button variant="heroOutline" size="lg">
+                Join Forge Community — It's Free
+              </Button>
+            </a>
           </motion.div>
         </motion.div>
       </div>
