@@ -250,8 +250,8 @@ const US_STATES: Record<string, string> = {
   "cheyenne": "Wyoming",
   "providence": "Rhode Island",
   "manchester": "New Hampshire",
-  "portland": "Maine",
-  "charleston": "West Virginia",
+  "portland me": "Maine",
+  "charleston wv": "West Virginia",
 };
 
 /* ─── Component ─── */
