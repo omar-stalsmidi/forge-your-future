@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import Classes from "./pages/Classes.tsx";
 import Blueprints from "./pages/Blueprints.tsx";
-import Merch from "./pages/Merch.tsx";
+
 import Quiz from "./pages/Quiz.tsx";
 import QuizResults from "./pages/QuizResults.tsx";
 import NotFound from "./pages/NotFound.tsx";
