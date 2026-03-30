@@ -24,7 +24,6 @@ type QuizData = {
   firstName: string;
   lastName: string;
   email: string;
-  phoneCountryCode: string;
   phone: string;
   country: string;
   city: string;
@@ -51,7 +50,6 @@ const initialData: QuizData = {
   firstName: "",
   lastName: "",
   email: "",
-  phoneCountryCode: "+1",
   phone: "",
   country: "",
   city: "",
@@ -142,118 +140,6 @@ const COUNTRIES = [
   "Egypt",
 ];
 
-const PHONE_CODES = [
-  { code: "+1", label: "US / CA (+1)" },
-  { code: "+44", label: "UK (+44)" },
-  { code: "+61", label: "AU (+61)" },
-  { code: "+64", label: "NZ (+64)" },
-  { code: "+353", label: "IE (+353)" },
-  { code: "+27", label: "ZA (+27)" },
-  { code: "+49", label: "DE (+49)" },
-  { code: "+33", label: "FR (+33)" },
-  { code: "+31", label: "NL (+31)" },
-  { code: "+32", label: "BE (+32)" },
-  { code: "+46", label: "SE (+46)" },
-  { code: "+47", label: "NO (+47)" },
-  { code: "+45", label: "DK (+45)" },
-  { code: "+358", label: "FI (+358)" },
-  { code: "+41", label: "CH (+41)" },
-  { code: "+43", label: "AT (+43)" },
-  { code: "+34", label: "ES (+34)" },
-  { code: "+351", label: "PT (+351)" },
-  { code: "+39", label: "IT (+39)" },
-  { code: "+52", label: "MX (+52)" },
-  { code: "+55", label: "BR (+55)" },
-  { code: "+54", label: "AR (+54)" },
-  { code: "+57", label: "CO (+57)" },
-  { code: "+56", label: "CL (+56)" },
-  { code: "+91", label: "IN (+91)" },
-  { code: "+63", label: "PH (+63)" },
-  { code: "+81", label: "JP (+81)" },
-  { code: "+82", label: "KR (+82)" },
-  { code: "+65", label: "SG (+65)" },
-  { code: "+971", label: "AE (+971)" },
-  { code: "+966", label: "SA (+966)" },
-  { code: "+972", label: "IL (+972)" },
-  { code: "+234", label: "NG (+234)" },
-  { code: "+254", label: "KE (+254)" },
-  { code: "+233", label: "GH (+233)" },
-  { code: "+20", label: "EG (+20)" },
-];
-
-const US_STATES: Record<string, string> = {
-  "new york": "New York",
-  "los angeles": "California",
-  "chicago": "Illinois",
-  "houston": "Texas",
-  "phoenix": "Arizona",
-  "philadelphia": "Pennsylvania",
-  "san antonio": "Texas",
-  "san diego": "California",
-  "dallas": "Texas",
-  "san jose": "California",
-  "austin": "Texas",
-  "jacksonville": "Florida",
-  "fort worth": "Texas",
-  "columbus": "Ohio",
-  "charlotte": "North Carolina",
-  "indianapolis": "Indiana",
-  "san francisco": "California",
-  "seattle": "Washington",
-  "denver": "Colorado",
-  "nashville": "Tennessee",
-  "oklahoma city": "Oklahoma",
-  "el paso": "Texas",
-  "boston": "Massachusetts",
-  "portland": "Oregon",
-  "las vegas": "Nevada",
-  "memphis": "Tennessee",
-  "louisville": "Kentucky",
-  "baltimore": "Maryland",
-  "milwaukee": "Wisconsin",
-  "albuquerque": "New Mexico",
-  "tucson": "Arizona",
-  "fresno": "California",
-  "mesa": "Arizona",
-  "sacramento": "California",
-  "atlanta": "Georgia",
-  "kansas city": "Missouri",
-  "colorado springs": "Colorado",
-  "omaha": "Nebraska",
-  "raleigh": "North Carolina",
-  "miami": "Florida",
-  "tampa": "Florida",
-  "orlando": "Florida",
-  "cleveland": "Ohio",
-  "pittsburgh": "Pennsylvania",
-  "detroit": "Michigan",
-  "minneapolis": "Minnesota",
-  "st. louis": "Missouri",
-  "salt lake city": "Utah",
-  "richmond": "Virginia",
-  "boise": "Idaho",
-  "des moines": "Iowa",
-  "birmingham": "Alabama",
-  "honolulu": "Hawaii",
-  "anchorage": "Alaska",
-  "little rock": "Arkansas",
-  "hartford": "Connecticut",
-  "wilmington": "Delaware",
-  "charleston": "South Carolina",
-  "columbia": "South Carolina",
-  "savannah": "Georgia",
-  "jackson": "Mississippi",
-  "billings": "Montana",
-  "fargo": "North Dakota",
-  "sioux falls": "South Dakota",
-  "burlington": "Vermont",
-  "cheyenne": "Wyoming",
-  "providence": "Rhode Island",
-  "manchester": "New Hampshire",
-  "portland me": "Maine",
-  "charleston wv": "West Virginia",
-};
-
 /* ─── Component ─── */
 
 const Quiz = () => {
@@ -261,37 +147,16 @@ const Quiz = () => {
   const [step, setStep] = useState(0);
   const [data, setData] = useState<QuizData>(initialData);
   const [submitting, setSubmitting] = useState(false);
-  const [phoneCodeSearch, setPhoneCodeSearch] = useState("");
   const [countrySearch, setCountrySearch] = useState("");
+  const [tradeSearch, setTradeSearch] = useState("");
 
   const update = (field: keyof QuizData, value: string | boolean) =>
     setData((prev) => ({ ...prev, [field]: value }));
-
-  const updateCity = (city: string) => {
-    setData((prev) => {
-      const newData = { ...prev, city };
-      if (prev.country === "United States") {
-        const match = US_STATES[city.toLowerCase().trim()];
-        newData.state = match || "";
-      }
-      return newData;
-    });
-  };
 
   const next = () => setStep((s) => s + 1);
   const back = () => setStep((s) => Math.max(0, s - 1));
 
   const totalSteps = 7;
-
-  const filteredPhoneCodes = useMemo(
-    () =>
-      phoneCodeSearch
-        ? PHONE_CODES.filter((p) =>
-            p.label.toLowerCase().includes(phoneCodeSearch.toLowerCase())
-          )
-        : PHONE_CODES,
-    [phoneCodeSearch]
-  );
 
   const filteredCountries = useMemo(
     () =>
@@ -303,6 +168,16 @@ const Quiz = () => {
     [countrySearch]
   );
 
+  const filteredTrades = useMemo(
+    () =>
+      tradeSearch
+        ? TRADES.filter((t) =>
+            t.toLowerCase().includes(tradeSearch.toLowerCase())
+          )
+        : TRADES,
+    [tradeSearch]
+  );
+
   const canContinue = (): boolean => {
     switch (step) {
       case 0:
@@ -312,6 +187,7 @@ const Quiz = () => {
           data.firstName &&
           data.lastName &&
           data.email &&
+          data.phone &&
           data.country &&
           data.trade &&
           (data.trade !== "Other" || data.tradeOther)
@@ -347,8 +223,8 @@ const Quiz = () => {
         first_name: data.firstName,
         last_name: data.lastName,
         email: data.email,
-        phone: data.phone ? `${data.phoneCountryCode} ${data.phone}` : null,
-        phone_country_code: data.phoneCountryCode,
+        phone: data.phone || null,
+        phone_country_code: null,
         country: data.country,
         city: data.city || null,
         state: data.state || null,
@@ -384,8 +260,6 @@ const Quiz = () => {
       setSubmitting(false);
     }
   };
-
-  const progress = ((step + 1) / (totalSteps + 1)) * 100;
 
   const slideVariants = {
     enter: { opacity: 0, x: 40 },
@@ -501,19 +375,34 @@ const Quiz = () => {
               </div>
             </div>
 
-            {/* Trade */}
+            {/* Trade with search */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className={data.trade === "Other" ? "" : "sm:col-span-2"}>
                 <Label className="text-foreground">What trade / field are you in? *</Label>
                 <Select
                   value={data.trade}
-                  onValueChange={(val) => update("trade", val)}
+                  onValueChange={(val) => {
+                    update("trade", val);
+                    setTradeSearch("");
+                  }}
                 >
                   <SelectTrigger className="mt-1.5">
                     <SelectValue placeholder="Select your trade" />
                   </SelectTrigger>
                   <SelectContent>
-                    {TRADES.map((t) => (
+                    <div className="px-2 pb-2 sticky top-0 bg-popover">
+                      <div className="flex items-center gap-2 border border-border rounded-md px-2">
+                        <Search className="w-3.5 h-3.5 text-muted-foreground" />
+                        <input
+                          className="w-full py-1.5 text-sm bg-transparent outline-none placeholder:text-muted-foreground"
+                          placeholder="Search trades..."
+                          value={tradeSearch}
+                          onChange={(e) => setTradeSearch(e.target.value)}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </div>
+                    </div>
+                    {filteredTrades.map((t) => (
                       <SelectItem key={t} value={t}>
                         {t}
                       </SelectItem>
@@ -547,43 +436,14 @@ const Quiz = () => {
                 />
               </div>
               <div>
-                <Label className="text-foreground">Phone (optional)</Label>
-                <div className="flex gap-2 mt-1.5">
-                  <Select
-                    value={data.phoneCountryCode}
-                    onValueChange={(val) => update("phoneCountryCode", val)}
-                  >
-                    <SelectTrigger className="w-[120px] flex-shrink-0">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <div className="px-2 pb-2 sticky top-0 bg-popover">
-                        <div className="flex items-center gap-2 border border-border rounded-md px-2">
-                          <Search className="w-3.5 h-3.5 text-muted-foreground" />
-                          <input
-                            className="w-full py-1.5 text-sm bg-transparent outline-none placeholder:text-muted-foreground"
-                            placeholder="Search..."
-                            value={phoneCodeSearch}
-                            onChange={(e) => setPhoneCodeSearch(e.target.value)}
-                            onClick={(e) => e.stopPropagation()}
-                          />
-                        </div>
-                      </div>
-                      {filteredPhoneCodes.map((p) => (
-                        <SelectItem key={p.code} value={p.code}>
-                          {p.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <Input
-                    type="tel"
-                    value={data.phone}
-                    onChange={(e) => update("phone", e.target.value)}
-                    placeholder="(555) 000-0000"
-                    className="flex-1"
-                  />
-                </div>
+                <Label className="text-foreground">Phone *</Label>
+                <Input
+                  type="tel"
+                  value={data.phone}
+                  onChange={(e) => update("phone", e.target.value)}
+                  placeholder="+1 (555) 000-0000"
+                  className="mt-1.5"
+                />
               </div>
             </div>
 
@@ -594,8 +454,8 @@ const Quiz = () => {
                 <Select
                   value={data.country}
                   onValueChange={(val) => {
-                    update("country", val);
                     setData((prev) => ({ ...prev, country: val, state: "", city: "" }));
+                    setCountrySearch("");
                   }}
                 >
                   <SelectTrigger className="mt-1.5">
@@ -623,24 +483,13 @@ const Quiz = () => {
                 </Select>
               </div>
               <div>
-                <Label className="text-foreground">
-                  City{data.country === "United States" ? "" : " (optional)"}
-                </Label>
+                <Label className="text-foreground">City (optional)</Label>
                 <Input
                   value={data.city}
-                  onChange={(e) => updateCity(e.target.value)}
-                  placeholder={
-                    data.country === "United States"
-                      ? "e.g. Austin — we'll find your state"
-                      : "e.g. Paris"
-                  }
+                  onChange={(e) => update("city", e.target.value)}
+                  placeholder="e.g. Paris"
                   className="mt-1.5"
                 />
-                {data.country === "United States" && data.state && (
-                  <p className="text-xs text-primary mt-1">
-                    State detected: {data.state}
-                  </p>
-                )}
               </div>
             </div>
           </div>
@@ -662,8 +511,6 @@ const Quiz = () => {
             <RadioGroup
               value={data.currentStatus}
               onValueChange={(val) => {
-                update("currentStatus", val);
-                // Reset status-dependent fields
                 setData((prev) => ({
                   ...prev,
                   currentStatus: val,
@@ -720,7 +567,6 @@ const Quiz = () => {
               { val: "overwhelmed", label: "Overwhelmed", desc: "I'm doing everything myself — sales, work, invoicing — and it's too much" },
             ];
           }
-          // business_owner
           return [
             { val: "starting_fresh", label: "Still Finding My Footing", desc: "My business is young and I need guidance to build it right" },
             { val: "stuck", label: "Stuck at a Plateau", desc: "Revenue has flatlined and I don't know what to do next" },
@@ -752,7 +598,7 @@ const Quiz = () => {
         );
       }
 
-      /* ─── Step 4: Experience & situation (different per status) ─── */
+      /* ─── Step 4: Experience & situation ─── */
       case 4: {
         if (data.currentStatus === "employee") {
           return (
@@ -768,9 +614,7 @@ const Quiz = () => {
               <div>
                 <Label className="text-foreground">How long have you been in your trade? *</Label>
                 <Select value={data.tradeExperience} onValueChange={(val) => update("tradeExperience", val)}>
-                  <SelectTrigger className="mt-1.5">
-                    <SelectValue placeholder="Select years of experience" />
-                  </SelectTrigger>
+                  <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select years of experience" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="0-2">0 – 2 years</SelectItem>
                     <SelectItem value="3-5">3 – 5 years</SelectItem>
@@ -782,9 +626,7 @@ const Quiz = () => {
               <div>
                 <Label className="text-foreground">When do you want to start your own business? *</Label>
                 <Select value={data.timelineToStart} onValueChange={(val) => update("timelineToStart", val)}>
-                  <SelectTrigger className="mt-1.5">
-                    <SelectValue placeholder="Select your timeline" />
-                  </SelectTrigger>
+                  <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select your timeline" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="not_sure">Not sure yet — exploring my options</SelectItem>
                     <SelectItem value="6-12months">Within 6 – 12 months</SelectItem>
@@ -796,9 +638,7 @@ const Quiz = () => {
               <div>
                 <Label className="text-foreground">Do you have savings set aside to start? *</Label>
                 <Select value={data.savingsReady} onValueChange={(val) => update("savingsReady", val)}>
-                  <SelectTrigger className="mt-1.5">
-                    <SelectValue placeholder="Select an option" />
-                  </SelectTrigger>
+                  <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select an option" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="no">Not really — I need help with the financial side</SelectItem>
                     <SelectItem value="some">Some, but probably not enough yet</SelectItem>
@@ -824,9 +664,7 @@ const Quiz = () => {
               <div>
                 <Label className="text-foreground">How long have you been in your trade? *</Label>
                 <Select value={data.tradeExperience} onValueChange={(val) => update("tradeExperience", val)}>
-                  <SelectTrigger className="mt-1.5">
-                    <SelectValue placeholder="Select years of experience" />
-                  </SelectTrigger>
+                  <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select years of experience" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="0-2">0 – 2 years</SelectItem>
                     <SelectItem value="3-5">3 – 5 years</SelectItem>
@@ -838,9 +676,7 @@ const Quiz = () => {
               <div>
                 <Label className="text-foreground">When did you start your side hustle? *</Label>
                 <Select value={data.businessStart} onValueChange={(val) => update("businessStart", val)}>
-                  <SelectTrigger className="mt-1.5">
-                    <SelectValue placeholder="Select when you started" />
-                  </SelectTrigger>
+                  <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select when you started" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="less_than_6mo">Less than 6 months ago</SelectItem>
                     <SelectItem value="6mo_1yr">6 months – 1 year ago</SelectItem>
@@ -852,9 +688,7 @@ const Quiz = () => {
               <div>
                 <Label className="text-foreground">How much have you made from your side hustle so far? *</Label>
                 <Select value={data.annualRevenue} onValueChange={(val) => update("annualRevenue", val)}>
-                  <SelectTrigger className="mt-1.5">
-                    <SelectValue placeholder="Select revenue range" />
-                  </SelectTrigger>
+                  <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select revenue range" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="under_5k">Under $5K</SelectItem>
                     <SelectItem value="5k_15k">$5K – $15K</SelectItem>
@@ -881,9 +715,7 @@ const Quiz = () => {
             <div>
               <Label className="text-foreground">How long have you been in your trade? *</Label>
               <Select value={data.tradeExperience} onValueChange={(val) => update("tradeExperience", val)}>
-                <SelectTrigger className="mt-1.5">
-                  <SelectValue placeholder="Select years of experience" />
-                </SelectTrigger>
+                <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select years of experience" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="0-2">0 – 2 years</SelectItem>
                   <SelectItem value="3-5">3 – 5 years</SelectItem>
@@ -895,9 +727,7 @@ const Quiz = () => {
             <div>
               <Label className="text-foreground">When did you start your business? *</Label>
               <Select value={data.businessStart} onValueChange={(val) => update("businessStart", val)}>
-                <SelectTrigger className="mt-1.5">
-                  <SelectValue placeholder="Select when you started" />
-                </SelectTrigger>
+                <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select when you started" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="less_than_1yr">Less than 1 year ago</SelectItem>
                   <SelectItem value="1_3yr">1 – 3 years ago</SelectItem>
@@ -910,9 +740,7 @@ const Quiz = () => {
             <div>
               <Label className="text-foreground">Annual revenue (approx.) *</Label>
               <Select value={data.annualRevenue} onValueChange={(val) => update("annualRevenue", val)}>
-                <SelectTrigger className="mt-1.5">
-                  <SelectValue placeholder="Select revenue range" />
-                </SelectTrigger>
+                <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select revenue range" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="under_50k">Under $50K</SelectItem>
                   <SelectItem value="50k_100k">$50K – $100K</SelectItem>
@@ -926,9 +754,7 @@ const Quiz = () => {
             <div>
               <Label className="text-foreground">Team size *</Label>
               <Select value={data.teamSize} onValueChange={(val) => update("teamSize", val)}>
-                <SelectTrigger className="mt-1.5">
-                  <SelectValue placeholder="Select team size" />
-                </SelectTrigger>
+                <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select team size" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="just_me">Just me</SelectItem>
                   <SelectItem value="2-5">2 – 5 people</SelectItem>
@@ -941,7 +767,7 @@ const Quiz = () => {
         );
       }
 
-      /* ─── Step 5: Challenges & Marketing (different per status) ─── */
+      /* ─── Step 5: Challenges & Marketing ─── */
       case 5: {
         if (data.currentStatus === "employee") {
           return (
@@ -957,9 +783,7 @@ const Quiz = () => {
               <div>
                 <Label className="text-foreground">What's holding you back the most? *</Label>
                 <Select value={data.marketingCurrent} onValueChange={(val) => update("marketingCurrent", val)}>
-                  <SelectTrigger className="mt-1.5">
-                    <SelectValue placeholder="Select your biggest hurdle" />
-                  </SelectTrigger>
+                  <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select your biggest hurdle" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="dont_know_where_to_start">I don't know where to start</SelectItem>
                     <SelectItem value="no_money">I don't have the money to start</SelectItem>
@@ -973,9 +797,7 @@ const Quiz = () => {
               <div>
                 <Label className="text-foreground">What's your #1 goal? *</Label>
                 <Select value={data.goals} onValueChange={(val) => update("goals", val)}>
-                  <SelectTrigger className="mt-1.5">
-                    <SelectValue placeholder="Select your top goal" />
-                  </SelectTrigger>
+                  <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select your top goal" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="start_business">Start my own business</SelectItem>
                     <SelectItem value="be_my_own_boss">Be my own boss</SelectItem>
@@ -1003,9 +825,7 @@ const Quiz = () => {
             <div>
               <Label className="text-foreground">What's your biggest challenge right now? *</Label>
               <Select value={data.biggestChallenge} onValueChange={(val) => update("biggestChallenge", val)}>
-                <SelectTrigger className="mt-1.5">
-                  <SelectValue placeholder="Select your biggest challenge" />
-                </SelectTrigger>
+                <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select your biggest challenge" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="getting_clients">Getting more clients</SelectItem>
                   <SelectItem value="pricing">Pricing & knowing my worth</SelectItem>
@@ -1021,9 +841,7 @@ const Quiz = () => {
             <div>
               <Label className="text-foreground">How do you currently get clients? *</Label>
               <Select value={data.marketingCurrent} onValueChange={(val) => update("marketingCurrent", val)}>
-                <SelectTrigger className="mt-1.5">
-                  <SelectValue placeholder="Select your main method" />
-                </SelectTrigger>
+                <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select your main method" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="none_yet">I don't have clients yet</SelectItem>
                   <SelectItem value="word_of_mouth">Word of mouth only</SelectItem>
@@ -1054,9 +872,7 @@ const Quiz = () => {
               <div>
                 <Label className="text-foreground">What's your #1 goal in the next 12 months? *</Label>
                 <Select value={data.goals} onValueChange={(val) => update("goals", val)}>
-                  <SelectTrigger className="mt-1.5">
-                    <SelectValue placeholder="Select your top goal" />
-                  </SelectTrigger>
+                  <SelectTrigger className="mt-1.5"><SelectValue placeholder="Select your top goal" /></SelectTrigger>
                   <SelectContent>
                     {data.currentStatus === "side_hustle" ? (
                       <>
@@ -1087,7 +903,6 @@ const Quiz = () => {
     }
   };
 
-  // For employees, step 5 already captures goals, so skip step 6
   const effectiveTotalSteps = data.currentStatus === "employee" ? 6 : 7;
   const effectiveProgress = ((step + 1) / effectiveTotalSteps) * 100;
   const isLastStep = data.currentStatus === "employee" ? step === 5 : step === 6;
@@ -1095,7 +910,7 @@ const Quiz = () => {
   return (
     <main className="bg-background min-h-screen">
       <Navbar />
-      <div className="container mx-auto px-6 pt-28 pb-20 max-w-2xl">
+      <div className="container mx-auto px-4 sm:px-6 pt-28 pb-20 max-w-2xl">
         {/* Progress bar */}
         <div className="mb-8">
           <div className="flex justify-between text-xs text-muted-foreground mb-2">
@@ -1115,7 +930,7 @@ const Quiz = () => {
         </div>
 
         {/* Step content — fixed min height for consistent button position */}
-        <div className="min-h-[480px] flex flex-col">
+        <div className="min-h-[520px] sm:min-h-[480px] flex flex-col">
           <div className="flex-1">
             <AnimatePresence mode="wait">
               <motion.div
@@ -1131,16 +946,16 @@ const Quiz = () => {
             </AnimatePresence>
           </div>
 
-          {/* Navigation — always at bottom */}
-          <div className="flex justify-between mt-8 pt-6 border-t border-border">
+          {/* Navigation — always at bottom, mobile-friendly */}
+          <div className="flex justify-between items-center mt-8 pt-6 border-t border-border gap-3">
             <Button
               variant="heroOutline"
               size="lg"
               onClick={back}
               disabled={step === 0}
-              className={step === 0 ? "invisible" : ""}
+              className={`${step === 0 ? "invisible" : ""} min-w-[100px] sm:min-w-[120px]`}
             >
-              <ArrowLeft className="mr-2 !size-4" /> Back
+              <ArrowLeft className="mr-1.5 !size-4" /> Back
             </Button>
 
             {!isLastStep ? (
@@ -1149,8 +964,9 @@ const Quiz = () => {
                 size="lg"
                 onClick={next}
                 disabled={!canContinue()}
+                className="min-w-[120px] sm:min-w-[140px]"
               >
-                Continue <ArrowRight className="ml-2 !size-4" />
+                Continue <ArrowRight className="ml-1.5 !size-4" />
               </Button>
             ) : (
               <Button
@@ -1158,16 +974,15 @@ const Quiz = () => {
                 size="lg"
                 onClick={handleSubmit}
                 disabled={!canContinue() || submitting}
+                className="min-w-[140px] sm:min-w-[200px]"
               >
                 {submitting ? (
                   <>
-                    <Loader2 className="mr-2 !size-4 animate-spin" />{" "}
-                    Submitting...
+                    <Loader2 className="mr-2 !size-4 animate-spin" /> Submitting...
                   </>
                 ) : (
                   <>
-                    See My Recommendations{" "}
-                    <ArrowRight className="ml-2 !size-4" />
+                    See My Recommendations <ArrowRight className="ml-1.5 !size-4" />
                   </>
                 )}
               </Button>
