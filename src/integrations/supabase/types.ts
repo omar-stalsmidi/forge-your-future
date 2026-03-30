@@ -18,7 +18,9 @@ export type Database = {
         Row: {
           annual_revenue: string | null
           biggest_challenge: string | null
+          business_start: string | null
           business_type: string | null
+          city: string | null
           country: string
           created_at: string
           current_status: string
@@ -30,20 +32,24 @@ export type Database = {
           last_name: string
           marketing_current: string | null
           phone: string | null
+          phone_country_code: string | null
           savings_ready: boolean | null
-          state: string
+          state: string | null
           team_size: string | null
           terms_accepted: boolean
           terms_accepted_at: string | null
           timeline_to_start: string | null
           trade_experience: string | null
+          trade_other: string | null
           updated_at: string
           years_in_business: string | null
         }
         Insert: {
           annual_revenue?: string | null
           biggest_challenge?: string | null
+          business_start?: string | null
           business_type?: string | null
+          city?: string | null
           country: string
           created_at?: string
           current_status: string
@@ -55,20 +61,24 @@ export type Database = {
           last_name: string
           marketing_current?: string | null
           phone?: string | null
+          phone_country_code?: string | null
           savings_ready?: boolean | null
-          state: string
+          state?: string | null
           team_size?: string | null
           terms_accepted?: boolean
           terms_accepted_at?: string | null
           timeline_to_start?: string | null
           trade_experience?: string | null
+          trade_other?: string | null
           updated_at?: string
           years_in_business?: string | null
         }
         Update: {
           annual_revenue?: string | null
           biggest_challenge?: string | null
+          business_start?: string | null
           business_type?: string | null
+          city?: string | null
           country?: string
           created_at?: string
           current_status?: string
@@ -80,13 +90,15 @@ export type Database = {
           last_name?: string
           marketing_current?: string | null
           phone?: string | null
+          phone_country_code?: string | null
           savings_ready?: boolean | null
-          state?: string
+          state?: string | null
           team_size?: string | null
           terms_accepted?: boolean
           terms_accepted_at?: string | null
           timeline_to_start?: string | null
           trade_experience?: string | null
+          trade_other?: string | null
           updated_at?: string
           years_in_business?: string | null
         }
