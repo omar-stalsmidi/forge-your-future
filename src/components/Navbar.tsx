@@ -9,9 +9,10 @@ import { useState } from "react";
 const SKOOL_URL = "https://www.skool.com/forge-the-trades-blueprint-8794/about";
 
 const navLinks = [
+  { label: "The Quiz", href: "/quiz" },
+  { label: "The Systems", href: "/systems" },
   { label: "The Classes", href: "/classes" },
   { label: "The Blueprints", href: "/blueprints" },
-  { label: "The Quiz", href: "/quiz" },
 ];
 
 const Navbar = () => {
