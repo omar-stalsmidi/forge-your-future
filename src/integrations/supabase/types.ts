@@ -14,7 +14,84 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      quiz_leads: {
+        Row: {
+          annual_revenue: string | null
+          biggest_challenge: string | null
+          business_type: string | null
+          country: string
+          created_at: string
+          current_status: string
+          email: string
+          feeling: string
+          first_name: string
+          goals: string | null
+          id: string
+          last_name: string
+          marketing_current: string | null
+          phone: string | null
+          savings_ready: boolean | null
+          state: string
+          team_size: string | null
+          terms_accepted: boolean
+          terms_accepted_at: string | null
+          timeline_to_start: string | null
+          trade_experience: string | null
+          updated_at: string
+          years_in_business: string | null
+        }
+        Insert: {
+          annual_revenue?: string | null
+          biggest_challenge?: string | null
+          business_type?: string | null
+          country: string
+          created_at?: string
+          current_status: string
+          email: string
+          feeling: string
+          first_name: string
+          goals?: string | null
+          id?: string
+          last_name: string
+          marketing_current?: string | null
+          phone?: string | null
+          savings_ready?: boolean | null
+          state: string
+          team_size?: string | null
+          terms_accepted?: boolean
+          terms_accepted_at?: string | null
+          timeline_to_start?: string | null
+          trade_experience?: string | null
+          updated_at?: string
+          years_in_business?: string | null
+        }
+        Update: {
+          annual_revenue?: string | null
+          biggest_challenge?: string | null
+          business_type?: string | null
+          country?: string
+          created_at?: string
+          current_status?: string
+          email?: string
+          feeling?: string
+          first_name?: string
+          goals?: string | null
+          id?: string
+          last_name?: string
+          marketing_current?: string | null
+          phone?: string | null
+          savings_ready?: boolean | null
+          state?: string
+          team_size?: string | null
+          terms_accepted?: boolean
+          terms_accepted_at?: string | null
+          timeline_to_start?: string | null
+          trade_experience?: string | null
+          updated_at?: string
+          years_in_business?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
