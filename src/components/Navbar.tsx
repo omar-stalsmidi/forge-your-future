@@ -11,7 +11,7 @@ const SKOOL_URL = "https://www.skool.com/forge-the-trades-blueprint-8794/about";
 const navLinks = [
   { label: "The Classes", href: "/classes" },
   { label: "The Blueprints", href: "/blueprints" },
-  { label: "The Merch", href: "/merch" },
+  { label: "The Quiz", href: "/quiz" },
 ];
 
 const Navbar = () => {
