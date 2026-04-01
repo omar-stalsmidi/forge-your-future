@@ -60,21 +60,21 @@ const HeroSection = () => {
 
           {/* Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display leading-[0.9] mb-4 md:mb-6 whitespace-nowrap"
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display leading-none mb-4 md:mb-6 inline-flex items-baseline gap-2 whitespace-nowrap"
           >
-            <span className="text-foreground inline">WE HELP YOU </span>
-            <span className="inline-block h-[1.1em] relative overflow-hidden align-bottom" style={{ minWidth: "3.5ch" }}>
+            <span className="text-foreground">WE HELP YOU</span>
+            <span className="relative inline-flex items-baseline h-[1em] overflow-visible">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={ROTATING_WORDS[wordIndex]}
-                  initial={{ y: "100%", opacity: 0 }}
-                  animate={{ y: "0%", opacity: 1 }}
-                  exit={{ y: "-100%", opacity: 0 }}
+                  initial={{ y: "0.35em", opacity: 0 }}
+                  animate={{ y: "0em", opacity: 1 }}
+                  exit={{ y: "-0.35em", opacity: 0 }}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
-                  className="text-gradient block absolute left-0"
+                  className="text-gradient inline-block"
                 >
                   {ROTATING_WORDS[wordIndex].toUpperCase()}
                 </motion.span>
