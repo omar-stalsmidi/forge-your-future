@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowRight, ArrowLeft, Shield, Loader2, Search } from "lucide-react";
+import { ArrowRight, ArrowLeft, Shield, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import Navbar from "@/components/Navbar";
@@ -102,42 +102,29 @@ const TRADES = [
 
 const COUNTRIES = [
   "United States",
-  "Canada",
-  "United Kingdom",
-  "Australia",
-  "New Zealand",
-  "Ireland",
-  "South Africa",
-  "Germany",
-  "France",
-  "Netherlands",
-  "Belgium",
-  "Sweden",
-  "Norway",
-  "Denmark",
-  "Finland",
-  "Switzerland",
-  "Austria",
-  "Spain",
-  "Portugal",
-  "Italy",
-  "Mexico",
-  "Brazil",
-  "Argentina",
-  "Colombia",
-  "Chile",
-  "India",
-  "Philippines",
-  "Japan",
-  "South Korea",
-  "Singapore",
-  "United Arab Emirates",
-  "Saudi Arabia",
-  "Israel",
-  "Nigeria",
-  "Kenya",
-  "Ghana",
-  "Egypt",
+  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
+  "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+  "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi",
+  "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia",
+  "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark",
+  "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea",
+  "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany",
+  "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary",
+  "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan",
+  "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon",
+  "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia",
+  "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova",
+  "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal",
+  "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway",
+  "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines",
+  "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia",
+  "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal",
+  "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia",
+  "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden",
+  "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga",
+  "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine",
+  "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City",
+  "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe",
 ];
 
 /* ─── Component ─── */
@@ -147,8 +134,6 @@ const Quiz = () => {
   const [step, setStep] = useState(0);
   const [data, setData] = useState<QuizData>(initialData);
   const [submitting, setSubmitting] = useState(false);
-  const [countrySearch, setCountrySearch] = useState("");
-  const [tradeSearch, setTradeSearch] = useState("");
 
   const update = (field: keyof QuizData, value: string | boolean) =>
     setData((prev) => ({ ...prev, [field]: value }));
@@ -157,26 +142,6 @@ const Quiz = () => {
   const back = () => setStep((s) => Math.max(0, s - 1));
 
   const totalSteps = 7;
-
-  const filteredCountries = useMemo(
-    () =>
-      countrySearch
-        ? COUNTRIES.filter((c) =>
-            c.toLowerCase().includes(countrySearch.toLowerCase())
-          )
-        : COUNTRIES,
-    [countrySearch]
-  );
-
-  const filteredTrades = useMemo(
-    () =>
-      tradeSearch
-        ? TRADES.filter((t) =>
-            t.toLowerCase().includes(tradeSearch.toLowerCase())
-          )
-        : TRADES,
-    [tradeSearch]
-  );
 
   const canContinue = (): boolean => {
     switch (step) {
@@ -381,28 +346,13 @@ const Quiz = () => {
                 <Label className="text-foreground">What trade / field are you in? *</Label>
                 <Select
                   value={data.trade}
-                  onValueChange={(val) => {
-                    update("trade", val);
-                    setTradeSearch("");
-                  }}
+                  onValueChange={(val) => update("trade", val)}
                 >
                   <SelectTrigger className="mt-1.5">
                     <SelectValue placeholder="Select your trade" />
                   </SelectTrigger>
                   <SelectContent>
-                    <div className="px-2 pb-2 sticky top-0 bg-popover">
-                      <div className="flex items-center gap-2 border border-border rounded-md px-2">
-                        <Search className="w-3.5 h-3.5 text-muted-foreground" />
-                        <input
-                          className="w-full py-1.5 text-sm bg-transparent outline-none placeholder:text-muted-foreground"
-                          placeholder="Search trades..."
-                          value={tradeSearch}
-                          onChange={(e) => setTradeSearch(e.target.value)}
-                          onClick={(e) => e.stopPropagation()}
-                        />
-                      </div>
-                    </div>
-                    {filteredTrades.map((t) => (
+                    {TRADES.map((t) => (
                       <SelectItem key={t} value={t}>
                         {t}
                       </SelectItem>
@@ -455,26 +405,13 @@ const Quiz = () => {
                   value={data.country}
                   onValueChange={(val) => {
                     setData((prev) => ({ ...prev, country: val, state: "", city: "" }));
-                    setCountrySearch("");
                   }}
                 >
                   <SelectTrigger className="mt-1.5">
                     <SelectValue placeholder="Select country" />
                   </SelectTrigger>
                   <SelectContent>
-                    <div className="px-2 pb-2 sticky top-0 bg-popover">
-                      <div className="flex items-center gap-2 border border-border rounded-md px-2">
-                        <Search className="w-3.5 h-3.5 text-muted-foreground" />
-                        <input
-                          className="w-full py-1.5 text-sm bg-transparent outline-none placeholder:text-muted-foreground"
-                          placeholder="Search..."
-                          value={countrySearch}
-                          onChange={(e) => setCountrySearch(e.target.value)}
-                          onClick={(e) => e.stopPropagation()}
-                        />
-                      </div>
-                    </div>
-                    {filteredCountries.map((c) => (
+                    {COUNTRIES.map((c) => (
                       <SelectItem key={c} value={c}>
                         {c}
                       </SelectItem>
@@ -483,7 +420,7 @@ const Quiz = () => {
                 </Select>
               </div>
               <div>
-                <Label className="text-foreground">City (optional)</Label>
+                <Label className="text-foreground">City</Label>
                 <Input
                   value={data.city}
                   onChange={(e) => update("city", e.target.value)}
