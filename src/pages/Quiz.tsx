@@ -134,7 +134,6 @@ const Quiz = () => {
   const [step, setStep] = useState(0);
   const [data, setData] = useState<QuizData>(initialData);
   const [submitting, setSubmitting] = useState(false);
-  const [countrySearch, setCountrySearch] = useState("");
   const [tradeSearch, setTradeSearch] = useState("");
 
   const update = (field: keyof QuizData, value: string | boolean) =>
