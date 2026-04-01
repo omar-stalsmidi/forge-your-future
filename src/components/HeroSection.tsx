@@ -63,10 +63,10 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display leading-[0.9] mb-4 md:mb-6"
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display leading-[0.9] mb-4 md:mb-6 whitespace-nowrap"
           >
-            <span className="text-foreground block">WE HELP YOU</span>
-            <span className="block h-[1.1em] relative overflow-hidden mt-1">
+            <span className="text-foreground inline">WE HELP YOU </span>
+            <span className="inline-block h-[1.1em] relative overflow-hidden align-bottom" style={{ minWidth: "3.5ch" }}>
               <AnimatePresence mode="wait">
                 <motion.span
                   key={ROTATING_WORDS[wordIndex]}
@@ -74,7 +74,7 @@ const HeroSection = () => {
                   animate={{ y: "0%", opacity: 1 }}
                   exit={{ y: "-100%", opacity: 0 }}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
-                  className="text-gradient block absolute inset-x-0"
+                  className="text-gradient block absolute left-0"
                 >
                   {ROTATING_WORDS[wordIndex].toUpperCase()}
                 </motion.span>
@@ -92,7 +92,7 @@ const HeroSection = () => {
             Whether you're an employee ready to go solo, or a business owner
             looking to scale —{" "}
             <span className="text-foreground font-semibold">
-              we've got the blueprint, the tools, and the community
+              we've got the blueprints, the systems, the tools, and the community
             </span>{" "}
             to get you there.
           </motion.p>
