@@ -346,28 +346,13 @@ const Quiz = () => {
                 <Label className="text-foreground">What trade / field are you in? *</Label>
                 <Select
                   value={data.trade}
-                  onValueChange={(val) => {
-                    update("trade", val);
-                    setTradeSearch("");
-                  }}
+                  onValueChange={(val) => update("trade", val)}
                 >
                   <SelectTrigger className="mt-1.5">
                     <SelectValue placeholder="Select your trade" />
                   </SelectTrigger>
                   <SelectContent>
-                    <div className="px-2 pb-2 sticky top-0 bg-popover">
-                      <div className="flex items-center gap-2 border border-border rounded-md px-2">
-                        <Search className="w-3.5 h-3.5 text-muted-foreground" />
-                        <input
-                          className="w-full py-1.5 text-sm bg-transparent outline-none placeholder:text-muted-foreground"
-                          placeholder="Search trades..."
-                          value={tradeSearch}
-                          onChange={(e) => setTradeSearch(e.target.value)}
-                          onClick={(e) => e.stopPropagation()}
-                        />
-                      </div>
-                    </div>
-                    {filteredTrades.map((t) => (
+                    {TRADES.map((t) => (
                       <SelectItem key={t} value={t}>
                         {t}
                       </SelectItem>
