@@ -11,7 +11,14 @@ const SKOOL_URL = "https://www.skool.com/forge-the-trades-blueprint-8794/about";
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const [wordIndex, setWordIndex] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % ROTATING_WORDS.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
