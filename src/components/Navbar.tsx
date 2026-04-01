@@ -35,7 +35,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-0">
           {navLinks.map((link, i) => (
             <React.Fragment key={link.label}>
-              {i > 0 && <div className="w-px h-5 bg-border" />}
+              {i > 0 && <div className="w-px h-5 bg-muted-foreground" />}
               <Link
                 to={link.href}
                 className="text-muted-foreground hover:text-foreground text-sm font-semibold uppercase tracking-wider transition-colors px-6"
