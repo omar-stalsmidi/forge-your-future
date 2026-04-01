@@ -52,7 +52,7 @@ const HeroSection = () => {
             className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6"
           >
             <div className="h-px w-10 bg-primary" />
-            <span className="text-primary uppercase text-sm font-bold tracking-[0.2em]">
+            <span className="text-primary uppercase text-xs md:text-sm font-bold tracking-[0.15em] md:tracking-[0.2em]">
               For Every Tradesman
             </span>
             <div className="h-px w-10 bg-primary" />
