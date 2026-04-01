@@ -405,26 +405,13 @@ const Quiz = () => {
                   value={data.country}
                   onValueChange={(val) => {
                     setData((prev) => ({ ...prev, country: val, state: "", city: "" }));
-                    setCountrySearch("");
                   }}
                 >
                   <SelectTrigger className="mt-1.5">
                     <SelectValue placeholder="Select country" />
                   </SelectTrigger>
                   <SelectContent>
-                    <div className="px-2 pb-2 sticky top-0 bg-popover">
-                      <div className="flex items-center gap-2 border border-border rounded-md px-2">
-                        <Search className="w-3.5 h-3.5 text-muted-foreground" />
-                        <input
-                          className="w-full py-1.5 text-sm bg-transparent outline-none placeholder:text-muted-foreground"
-                          placeholder="Search..."
-                          value={countrySearch}
-                          onChange={(e) => setCountrySearch(e.target.value)}
-                          onClick={(e) => e.stopPropagation()}
-                        />
-                      </div>
-                    </div>
-                    {filteredCountries.map((c) => (
+                    {COUNTRIES.map((c) => (
                       <SelectItem key={c} value={c}>
                         {c}
                       </SelectItem>
@@ -433,7 +420,7 @@ const Quiz = () => {
                 </Select>
               </div>
               <div>
-                <Label className="text-foreground">City (optional)</Label>
+                <Label className="text-foreground">City</Label>
                 <Input
                   value={data.city}
                   onChange={(e) => update("city", e.target.value)}
