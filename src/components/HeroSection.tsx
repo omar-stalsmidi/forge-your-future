@@ -63,7 +63,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display leading-none mb-4 md:mb-6 inline-flex items-baseline gap-2 whitespace-nowrap"
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display leading-none mb-4 md:mb-6 inline-flex items-baseline gap-4 md:gap-6 whitespace-nowrap"
           >
             <span className="text-foreground">WE HELP YOU</span>
             <span className="relative inline-flex items-baseline h-[1em] overflow-visible">
