@@ -134,7 +134,6 @@ const Quiz = () => {
   const [step, setStep] = useState(0);
   const [data, setData] = useState<QuizData>(initialData);
   const [submitting, setSubmitting] = useState(false);
-  const [tradeSearch, setTradeSearch] = useState("");
 
   const update = (field: keyof QuizData, value: string | boolean) =>
     setData((prev) => ({ ...prev, [field]: value }));
@@ -143,26 +142,6 @@ const Quiz = () => {
   const back = () => setStep((s) => Math.max(0, s - 1));
 
   const totalSteps = 7;
-
-  const filteredCountries = useMemo(
-    () =>
-      countrySearch
-        ? COUNTRIES.filter((c) =>
-            c.toLowerCase().includes(countrySearch.toLowerCase())
-          )
-        : COUNTRIES,
-    [countrySearch]
-  );
-
-  const filteredTrades = useMemo(
-    () =>
-      tradeSearch
-        ? TRADES.filter((t) =>
-            t.toLowerCase().includes(tradeSearch.toLowerCase())
-          )
-        : TRADES,
-    [tradeSearch]
-  );
 
   const canContinue = (): boolean => {
     switch (step) {
