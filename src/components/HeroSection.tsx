@@ -118,7 +118,7 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="border-t border-border/30 pt-8"
+            className="border-t border-border/30 pt-6 md:pt-8"
           >
             <div className="flex items-center justify-center gap-3 mb-3">
               <div className="w-9 h-9 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
