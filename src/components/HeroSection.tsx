@@ -1,8 +1,11 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import heroImage from "@/assets/hero-construction.jpg";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+const ROTATING_WORDS = ["Start", "Build", "Optimise", "Sell", "Hire", "Scale"];
 
 const SKOOL_URL = "https://www.skool.com/forge-the-trades-blueprint-8794/about";
 
