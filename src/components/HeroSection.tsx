@@ -65,9 +65,21 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-5xl md:text-7xl lg:text-8xl font-display leading-[0.9] mb-6"
           >
-            <span className="text-foreground block">YOUR SKILLS BUILT</span>
-            <span className="text-foreground block">THIS WORLD.</span>
-            <span className="text-gradient block mt-1">NOW BUILD YOURS.</span>
+            <span className="text-foreground block">WE HELP YOU</span>
+            <span className="block h-[1.1em] relative overflow-hidden mt-1">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={ROTATING_WORDS[wordIndex]}
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: "0%", opacity: 1 }}
+                  exit={{ y: "-100%", opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="text-gradient block absolute inset-x-0"
+                >
+                  {ROTATING_WORDS[wordIndex].toUpperCase()}
+                </motion.span>
+              </AnimatePresence>
+            </span>
           </motion.h1>
 
           {/* Sub-copy */}
