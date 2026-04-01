@@ -130,7 +130,7 @@ const HeroSection = () => {
               </p>
             </div>
             <a href={SKOOL_URL} target="_blank" rel="noopener noreferrer">
-              <Button variant="heroOutline" size="lg">
+              <Button variant="heroOutline" size="lg" className="text-xs md:text-sm w-full">
                 Join Forge Community — It's Free
               </Button>
             </a>
