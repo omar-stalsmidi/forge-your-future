@@ -92,7 +92,7 @@ const HeroSection = () => {
             Whether you're an employee ready to go solo, or a business owner
             looking to scale —{" "}
             <span className="text-foreground font-semibold">
-              we've got the blueprint, the tools, and the community
+              we've got the blueprints, the systems, the tools, and the community
             </span>{" "}
             to get you there.
           </motion.p>
