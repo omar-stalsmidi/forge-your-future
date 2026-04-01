@@ -87,7 +87,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-sm md:text-lg lg:text-xl text-muted-foreground max-w-lg mx-auto mb-6 md:mb-10 leading-relaxed"
+            className="text-sm md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 md:mb-10 leading-relaxed"
           >
             Whether you're an employee ready to go solo, or a business owner
             looking to scale —{" "}
