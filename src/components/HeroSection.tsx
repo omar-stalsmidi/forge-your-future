@@ -16,7 +16,7 @@ const HeroSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setWordIndex((prev) => (prev + 1) % ROTATING_WORDS.length);
-    }, 2000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
   return (
@@ -42,7 +42,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="bg-background/70 backdrop-blur-xl rounded-2xl border border-border/30 px-5 py-8 md:px-16 md:py-16 max-w-3xl shadow-2xl w-full"
+          className="bg-background/70 backdrop-blur-xl rounded-2xl border border-border/30 px-5 py-6 md:px-20 md:py-10 max-w-5xl shadow-2xl w-full"
         >
           {/* Eyebrow */}
           <motion.div
@@ -63,7 +63,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display leading-none mb-4 md:mb-6 inline-flex items-baseline gap-2 whitespace-nowrap"
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display leading-none mb-4 md:mb-6 inline-flex items-baseline gap-4 md:gap-6 whitespace-nowrap"
           >
             <span className="text-foreground">WE HELP YOU</span>
             <span className="relative inline-flex items-baseline h-[1em] overflow-visible">
