@@ -63,7 +63,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-display leading-[0.9] mb-6"
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display leading-[0.9] mb-4 md:mb-6"
           >
             <span className="text-foreground block">WE HELP YOU</span>
             <span className="block h-[1.1em] relative overflow-hidden mt-1">
