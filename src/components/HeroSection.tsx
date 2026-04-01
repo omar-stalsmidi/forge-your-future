@@ -20,7 +20,7 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <motion.div
         className="absolute inset-0"
@@ -37,22 +37,22 @@ const HeroSection = () => {
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col items-center text-center">
+      <div className="relative z-10 container mx-auto px-4 md:px-6 py-16 md:py-20 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="bg-background/70 backdrop-blur-xl rounded-2xl border border-border/30 px-8 py-12 md:px-16 md:py-16 max-w-3xl shadow-2xl"
+          className="bg-background/70 backdrop-blur-xl rounded-2xl border border-border/30 px-5 py-8 md:px-16 md:py-16 max-w-3xl shadow-2xl w-full"
         >
           {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex items-center justify-center gap-3 mb-6"
+            className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6"
           >
             <div className="h-px w-10 bg-primary" />
-            <span className="text-primary uppercase text-sm font-bold tracking-[0.2em]">
+            <span className="text-primary uppercase text-xs md:text-sm font-bold tracking-[0.15em] md:tracking-[0.2em]">
               For Every Tradesman
             </span>
             <div className="h-px w-10 bg-primary" />
@@ -63,7 +63,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-display leading-[0.9] mb-6"
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display leading-[0.9] mb-4 md:mb-6"
           >
             <span className="text-foreground block">WE HELP YOU</span>
             <span className="block h-[1.1em] relative overflow-hidden mt-1">
@@ -87,7 +87,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto mb-10 leading-relaxed"
+            className="text-sm md:text-lg lg:text-xl text-muted-foreground max-w-lg mx-auto mb-6 md:mb-10 leading-relaxed"
           >
             Whether you're an employee ready to go solo, or a business owner
             looking to scale —{" "}
@@ -102,7 +102,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.65 }}
-            className="flex flex-col items-center gap-6 mb-12"
+            className="flex flex-col items-center gap-4 md:gap-6 mb-8 md:mb-12"
           >
             <Button
               variant="hero"
@@ -118,7 +118,7 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="border-t border-border/30 pt-8"
+            className="border-t border-border/30 pt-6 md:pt-8"
           >
             <div className="flex items-center justify-center gap-3 mb-3">
               <div className="w-9 h-9 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
@@ -130,7 +130,7 @@ const HeroSection = () => {
               </p>
             </div>
             <a href={SKOOL_URL} target="_blank" rel="noopener noreferrer">
-              <Button variant="heroOutline" size="lg">
+              <Button variant="heroOutline" size="lg" className="text-xs md:text-sm w-full">
                 Join Forge Community — It's Free
               </Button>
             </a>
