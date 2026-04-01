@@ -37,12 +37,12 @@ const HeroSection = () => {
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col items-center text-center">
+      <div className="relative z-10 container mx-auto px-4 md:px-6 py-16 md:py-20 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="bg-background/70 backdrop-blur-xl rounded-2xl border border-border/30 px-8 py-12 md:px-16 md:py-16 max-w-3xl shadow-2xl"
+          className="bg-background/70 backdrop-blur-xl rounded-2xl border border-border/30 px-5 py-8 md:px-16 md:py-16 max-w-3xl shadow-2xl w-full"
         >
           {/* Eyebrow */}
           <motion.div
