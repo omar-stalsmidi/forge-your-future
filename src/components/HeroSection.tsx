@@ -109,7 +109,7 @@ const HeroSection = () => {
               size="xl"
               onClick={() => navigate("/quiz")}
             >
-              Let Us Help You <ArrowRight className="ml-2 !size-5" />
+              Get The Help You Need <ArrowRight className="ml-2 !size-5" />
             </Button>
           </motion.div>
 
